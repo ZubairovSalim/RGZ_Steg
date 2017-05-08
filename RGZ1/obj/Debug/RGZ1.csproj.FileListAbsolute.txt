@@ -1,0 +1,9 @@
+c:\users\user\documents\visual studio 2015\Projects\RGZ1\RGZ1\bin\Debug\RGZ1.exe.config
+c:\users\user\documents\visual studio 2015\Projects\RGZ1\RGZ1\bin\Debug\RGZ1.exe
+c:\users\user\documents\visual studio 2015\Projects\RGZ1\RGZ1\bin\Debug\RGZ1.pdb
+c:\users\user\documents\visual studio 2015\Projects\RGZ1\RGZ1\obj\Debug\RGZ1.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2015\Projects\RGZ1\RGZ1\obj\Debug\RGZ1.Properties.Resources.resources
+c:\users\user\documents\visual studio 2015\Projects\RGZ1\RGZ1\obj\Debug\RGZ1.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2015\Projects\RGZ1\RGZ1\obj\Debug\RGZ1.exe
+c:\users\user\documents\visual studio 2015\Projects\RGZ1\RGZ1\obj\Debug\RGZ1.pdb
+C:\Users\user\Documents\Visual Studio 2015\Projects\RGZ1\RGZ1\obj\Debug\RGZ1.Form1.resources
