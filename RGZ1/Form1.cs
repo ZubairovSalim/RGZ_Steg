@@ -275,7 +275,7 @@ namespace RGZ1
 
         private void txt_Encrypt_TextChanged(object sender, EventArgs e)
         {
-            label5.Text = txt_Encrypt.Text.Length.ToString();
+            label5.Text = txt_Encrypt.Text.Length.ToString() + " symbols";
         }
     }
 }
