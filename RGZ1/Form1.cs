@@ -149,6 +149,11 @@ namespace RGZ1
                     throw new ContainerFlaw("Please, enter number of symbols");
                 }
 
+                else if(Convert.ToInt32(txt_Number.Text) == 0)
+                {
+                    throw new ContainerFlaw("Length of message is too small");
+                }
+
                 progressBar1.Visible = true;
                 label4.Visible = true;
                 btn_Share.Enabled = false;
@@ -240,27 +245,14 @@ namespace RGZ1
         bool non = false;
 
         private void txt_Number_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                char symb = (char)e.KeyData;
-                if (e.KeyCode == Keys.OemMinus)
-                    non = true;
-                if (char.IsNumber(symb) == false)
-                    non = true;
-                if (e.KeyCode == Keys.Back)
-                    non = false;
-                if (symb == '0')
-                {
-                    throw new ContainerFlaw("Length of encrypted message is too small");
-                }
-            }
-            catch(ContainerFlaw ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
-
+        {            
+            char symb = (char)e.KeyData;
+            if (e.KeyCode == Keys.OemMinus)
+                non = true;
+            if (char.IsNumber(symb) == false)
+                non = true;
+            if (e.KeyCode == Keys.Back)
+                non = false;          
         }
 
         private void txt_Number_KeyPress(object sender, KeyPressEventArgs e)
