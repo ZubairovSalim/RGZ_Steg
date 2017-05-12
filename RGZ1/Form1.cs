@@ -277,5 +277,40 @@ namespace RGZ1
         {
             label5.Text = txt_Encrypt.Text.Length.ToString() + " symbols";
         }
+
+        private void txt_Encrypt_MouseEnter(object sender, EventArgs e)
+        {
+            tip_Encrypt.SetToolTip(txt_Encrypt, "Enter there text for hiding");
+        }
+
+        private void txt_Number_MouseEnter(object sender, EventArgs e)
+        {
+            tip_Number.SetToolTip(txt_Number, "Enter there number of symbols in the hidden message");
+        }
+
+        private void btn_Share_MouseEnter(object sender, EventArgs e)
+        {
+            tip_Share.SetToolTip(btn_Share, "Click there for choosing image in directory");
+        }
+
+        private void btn_Save_MouseEnter(object sender, EventArgs e)
+        {
+            tip_Save.SetToolTip(btn_Save, "CLick there for saving image in directory");
+        }
+
+        private void btn_Encrypt_MouseEnter(object sender, EventArgs e)
+        {
+            tip_Encrypt.SetToolTip(btn_Encrypt, "Click there for hiding message in choosen image");
+        }
+
+        private void btn_Decrypt_MouseEnter(object sender, EventArgs e)
+        {
+            tip_Decrypt.SetToolTip(btn_Decrypt, "Click there for extracting message from choosen image");
+        }
+
+        private void btn_Reset_MouseEnter(object sender, EventArgs e)
+        {
+            tip_Reset.SetToolTip(btn_Reset, "Click there for reset settings");
+        }
     }
 }

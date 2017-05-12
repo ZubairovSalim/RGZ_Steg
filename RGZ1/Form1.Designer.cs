@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btn_Share = new System.Windows.Forms.Button();
             this.btn_Encrypt = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btn_Reset = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,7 +47,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.tip_Encrypt = new System.Windows.Forms.ToolTip(this.components);
+            this.tip_Number = new System.Windows.Forms.ToolTip(this.components);
+            this.tip_Share = new System.Windows.Forms.ToolTip(this.components);
+            this.tip_Save = new System.Windows.Forms.ToolTip(this.components);
+            this.tip_Decrypt = new System.Windows.Forms.ToolTip(this.components);
+            this.tip_Reset = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -60,6 +67,7 @@
             this.btn_Share.Text = "Share";
             this.btn_Share.UseVisualStyleBackColor = true;
             this.btn_Share.Click += new System.EventHandler(this.btn_Share_Click);
+            this.btn_Share.MouseEnter += new System.EventHandler(this.btn_Share_MouseEnter);
             // 
             // btn_Encrypt
             // 
@@ -70,6 +78,7 @@
             this.btn_Encrypt.Text = "Encrypt";
             this.btn_Encrypt.UseVisualStyleBackColor = true;
             this.btn_Encrypt.Click += new System.EventHandler(this.btn_Encrypt_Click);
+            this.btn_Encrypt.MouseEnter += new System.EventHandler(this.btn_Encrypt_MouseEnter);
             // 
             // pictureBox1
             // 
@@ -100,6 +109,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Control";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(220, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "0 symbols";
+            // 
             // btn_Reset
             // 
             this.btn_Reset.Location = new System.Drawing.Point(223, 205);
@@ -109,6 +127,7 @@
             this.btn_Reset.Text = "Reset";
             this.btn_Reset.UseVisualStyleBackColor = true;
             this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
+            this.btn_Reset.MouseEnter += new System.EventHandler(this.btn_Reset_MouseEnter);
             // 
             // label3
             // 
@@ -147,6 +166,7 @@
             this.txt_Number.TabIndex = 10;
             this.txt_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Number_KeyDown);
             this.txt_Number.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Number_KeyPress);
+            this.txt_Number.MouseEnter += new System.EventHandler(this.txt_Number_MouseEnter);
             // 
             // txt_Decrypt
             // 
@@ -167,6 +187,7 @@
             this.btn_Decrypt.Text = "Decrypt";
             this.btn_Decrypt.UseVisualStyleBackColor = true;
             this.btn_Decrypt.Click += new System.EventHandler(this.btn_Decrypt_Click);
+            this.btn_Decrypt.MouseEnter += new System.EventHandler(this.btn_Decrypt_MouseEnter);
             // 
             // btn_Save
             // 
@@ -177,6 +198,7 @@
             this.btn_Save.Text = "Save";
             this.btn_Save.UseVisualStyleBackColor = true;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            this.btn_Save.MouseEnter += new System.EventHandler(this.btn_Save_MouseEnter);
             // 
             // txt_Encrypt
             // 
@@ -187,6 +209,7 @@
             this.txt_Encrypt.Size = new System.Drawing.Size(266, 50);
             this.txt_Encrypt.TabIndex = 5;
             this.txt_Encrypt.TextChanged += new System.EventHandler(this.txt_Encrypt_TextChanged);
+            this.txt_Encrypt.MouseEnter += new System.EventHandler(this.txt_Encrypt_MouseEnter);
             // 
             // label4
             // 
@@ -220,14 +243,6 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Results";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(220, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 13);
-            this.label5.TabIndex = 17;
             // 
             // Form1
             // 
@@ -271,6 +286,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_Reset;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolTip tip_Encrypt;
+        private System.Windows.Forms.ToolTip tip_Number;
+        private System.Windows.Forms.ToolTip tip_Share;
+        private System.Windows.Forms.ToolTip tip_Save;
+        private System.Windows.Forms.ToolTip tip_Decrypt;
+        private System.Windows.Forms.ToolTip tip_Reset;
     }
 }
 
