@@ -36,6 +36,12 @@ namespace RGZ1
         List<double[,]> mas2_dct;
 
         List<Thread> threads = new List<Thread>();
+
+        public delegate void Helper();
+
+        public delegate void Helper1(string s);
+
+        bool ex_flag = false;
         
         public Form1()
         {
@@ -50,28 +56,28 @@ namespace RGZ1
             try
             {
                 ImageMaker image = new ImageMaker(adress);
-                mas_byte = image.ArrayFilling();
-                mas_sepparated = image.ArraySeparation(mas_byte);
-
                 if (mas_sepparated.Count < message.Length * 8)
                 {
-                    progressBar1.Visible = false;
-                    label4.Visible = false;
+                    ex_flag = true;
+                    EncryptHelp();
                     throw new ContainerFlaw("The message length is too large for the container");
                 }
-
+                mas_byte = image.ArrayFilling();
+                mas_sepparated = image.ArraySeparation(mas_byte);
                 mas_dct = transforms.DisCosTrans(mas_sepparated);
                 mas_infiltrated = transforms.Infiltration(mas_dct, message, 4, 5, 5, 4);
                 mas_idct = transforms.RevDisCosTrans(mas_infiltrated);
                 mas_new_sepparated = transforms.Normalize(mas_idct);
                 mas_new_byte = transforms.Add(mas_new_sepparated, image.Width, image.Height);
                 resultImage = image.Introduction(mas_new_byte);
-                progressBar1.Visible = false;
-                label4.Visible = false;
-                btn_Share.Enabled = true;
-                btn_Encrypt.Enabled = true;
-                btn_Decrypt.Enabled = true;
-                btn_Save.Enabled = true;
+                EncryptHelp();
+                //progressBar1.Visible = false;
+                //label4.Visible = false;
+                //btn_Share.Enabled = true;
+                //btn_Encrypt.Enabled = true;
+                //btn_Decrypt.Enabled = true;
+                //btn_Save.Enabled = true;
+
             }
             catch (ContainerFlaw ex)
             {
@@ -88,13 +94,60 @@ namespace RGZ1
             mas2_sepparated = image1.ArraySeparation(mas2_byte);
             mas2_dct = transforms.DisCosTrans(mas2_sepparated);
             string mes = transforms.Extraction(mas2_dct, 4, 5, 5, 4, mes_length);
-            txt_Decrypt.Text = mes;
-            progressBar1.Visible = false;
-            label4.Visible = false;
-            btn_Share.Enabled = true;
-            btn_Save.Enabled = false;
-            btn_Encrypt.Enabled = true;
-            btn_Decrypt.Enabled = true;
+            DecryptHelp(mes);
+            //txt_Decrypt.Text = mes;
+            //progressBar1.Visible = false;
+            //label4.Visible = false;
+            //btn_Share.Enabled = true;
+            //btn_Save.Enabled = false;
+            //btn_Encrypt.Enabled = true;
+            //btn_Decrypt.Enabled = true;
+        }
+
+        public void EncryptHelp()
+        {
+            if (this.progressBar1.InvokeRequired)
+            {
+                Helper d = new Helper(EncryptHelp);
+                this.Invoke(d);
+            }
+            else
+            {
+                if (ex_flag == true)
+                {
+                    progressBar1.Visible = false;
+                    label4.Visible = false;
+                }
+                else
+                {
+                    progressBar1.Visible = false;
+                    label4.Visible = false;
+                    btn_Share.Enabled = true;
+                    btn_Encrypt.Enabled = true;
+                    btn_Decrypt.Enabled = true;
+                    btn_Save.Enabled = true;
+                }
+
+            }                    
+        }
+
+        public void DecryptHelp(string str)
+        {
+            if (this.progressBar1.InvokeRequired)
+            {
+                Helper1 d1 = new Helper1(DecryptHelp);
+                this.Invoke(d1,new object[] { str });
+            }
+            else
+            {
+                txt_Decrypt.Text = str;
+                progressBar1.Visible = false;
+                label4.Visible = false;
+                btn_Share.Enabled = true;
+                btn_Save.Enabled = false;
+                btn_Encrypt.Enabled = true;
+                btn_Decrypt.Enabled = true;
+            }
         }
 
         private void btn_Share_Click(object sender, EventArgs e)
@@ -118,15 +171,22 @@ namespace RGZ1
         {
             try
             {
+                ImageMaker img = new ImageMaker(adress);
                 if (txt_Encrypt.Text == String.Empty)
                 {
                     throw new ContainerFlaw("Please, enter a hidding message");
+                }
+                if (img.Height * img.Width / 64 < txt_Encrypt.Text.Length * 8)
+                {
+                    progressBar1.Visible = false;
+                    label4.Visible = false;
+                    throw new ContainerFlaw("The message length is too large for the container");
                 }
                 progressBar1.Visible = true;
                 label4.Visible = true;
                 btn_Share.Enabled = false;
                 btn_Encrypt.Enabled = false;
-                btn_Decrypt.Enabled = false;
+                btn_Decrypt.Enabled = false; 
                 message = txt_Encrypt.Text;
                 ThreadStart deleg = new ThreadStart(DoEncrypt);
                 Thread thr = new Thread(deleg);
@@ -210,6 +270,7 @@ namespace RGZ1
             }
 
             progressBar1.Visible = false;
+            btn_Share.Enabled = true;
             btn_Encrypt.Enabled = false;
             btn_Decrypt.Enabled = false;
             btn_Save.Enabled = false;
