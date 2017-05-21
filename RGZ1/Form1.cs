@@ -56,14 +56,14 @@ namespace RGZ1
             try
             {
                 ImageMaker image = new ImageMaker(adress);
+                mas_byte = image.ArrayFilling();
+                mas_sepparated = image.ArraySeparation(mas_byte);
                 if (mas_sepparated.Count < message.Length * 8)
                 {
                     ex_flag = true;
                     EncryptHelp();
                     throw new ContainerFlaw("The message length is too large for the container");
                 }
-                mas_byte = image.ArrayFilling();
-                mas_sepparated = image.ArraySeparation(mas_byte);
                 mas_dct = transforms.DisCosTrans(mas_sepparated);
                 mas_infiltrated = transforms.Infiltration(mas_dct, message, 4, 5, 5, 4);
                 mas_idct = transforms.RevDisCosTrans(mas_infiltrated);
@@ -117,6 +117,12 @@ namespace RGZ1
                 {
                     progressBar1.Visible = false;
                     label4.Visible = false;
+                    btn_Share.Enabled = true;
+                    btn_Encrypt.Enabled = true;
+                    btn_Decrypt.Enabled = true;
+                    btn_Save.Enabled = false;
+                    ex_flag = false;
+
                 }
                 else
                 {
@@ -171,17 +177,17 @@ namespace RGZ1
         {
             try
             {
-                ImageMaker img = new ImageMaker(adress);
+                //ImageMaker img = new ImageMaker(adress);
                 if (txt_Encrypt.Text == String.Empty)
                 {
                     throw new ContainerFlaw("Please, enter a hidding message");
                 }
-                if (img.Height * img.Width / 64 < txt_Encrypt.Text.Length * 8)
-                {
-                    progressBar1.Visible = false;
-                    label4.Visible = false;
-                    throw new ContainerFlaw("The message length is too large for the container");
-                }
+                //if (img.Height * img.Width / 64 < txt_Encrypt.Text.Length * 8)
+                //{
+                //    progressBar1.Visible = false;
+                //    label4.Visible = false;
+                //    throw new ContainerFlaw("The message length is too large for the container");
+                //}
                 progressBar1.Visible = true;
                 label4.Visible = true;
                 btn_Share.Enabled = false;
